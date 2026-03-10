@@ -1,9 +1,39 @@
 <style>
-img, video{
-  width:100%;
-  height:auto;
-  display:block;
-  margin:auto;
+body{
+  margin:0;
+}
+
+/* 横屏 */
+@media (orientation: landscape){
+  body{
+    display:flex;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+  }
+
+  img, video{
+    display:block;
+    width:auto;
+    height:auto;
+    max-height:100vh;
+    flex-shrink:0;
+  }
+}
+
+/* 竖屏 */
+@media (orientation: portrait){
+  body{
+    display:block;
+    overflow-y:auto;
+  }
+
+  img, video{
+    width:100%;
+    height:auto;
+    display:block;
+    margin:auto;
+  }
 }
 </style>
 
@@ -12,5 +42,20 @@ img, video{
 
 <video autoplay loop muted playsinline>
   <source src="Cheng3.mp4" type="video/mp4">
-
 </video>
+
+<img src="Cheng2.jpg">
+<img src="Cheng2.jpg">
+<img src="Cheng2.jpg">
+
+<script>
+if(window.matchMedia("(orientation: landscape)").matches){
+  window.addEventListener("wheel", function(e){
+    e.preventDefault();
+    window.scrollBy({
+      left:e.deltaY,
+      behavior:"smooth"
+    });
+  }, { passive:false });
+}
+</script>
